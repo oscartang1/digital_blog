@@ -1,0 +1,90 @@
+<div id="post-body">
+	
+	<div id="post-box">
+		<div id="title-post-2"><%= image_tag("bell.png", height: 30) %> notifications</div>
+	</div>
+
+	<% if @request.count != 0 %>
+		<div id="post-box">	
+			<% @request.each do |request| %>
+				<div id="request-header">
+					
+				<div id="author-info">
+	
+					<div id="author-pic">
+						<% if request.user.picture_file_name != nil %>
+							<%= link_to image_tag(request.user.picture.url(:thumb)), users_path(request.user.id) %>
+						<% else %>
+							<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), users_path(request.user.id)%>
+						<% end %>
+					</div>
+					
+					<div id="author-name">
+						<%= link_to request.user.f_name.capitalize + " " + request.user.s_name.capitalize, user_path(request.user.id) %>
+					</div>
+					
+					<div id="ago"> wants to follow you</div>
+					
+				</div>
+				
+				<div id="request">
+					<span id="btn-confirm">
+						<%= link_to "+ Confirm", {:controller => :request, :action => :confirm, :id => (request.user.id) }, 
+						{:method => :get} %>
+					</span>
+					
+					<span id="btn-reject"><%= link_to " Reject", 
+						{:controller => :request, :action => :reject, :id => (request.user.id) }, 
+						{:method => :get} %>
+					</span>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	<% end %>
+	
+	<% @follow.each do |follow| %>
+		<div id="post-box">
+			<div id="request-header">
+			
+				<div id="author-info">		
+					<div id="author-pic">
+					<% if follow.user.picture_file_name != nil %>
+						<%= link_to image_tag(follow.user.picture.url(:thumb)), users_path(follow.user.id) %>
+					<% else %>
+						<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), users_path(follow.user.id)%>
+					<% end %>
+					</div>
+			
+					<div id="author-name">
+						<%= link_to follow.user.f_name.capitalize + " " + follow.user.s_name.capitalize, user_path(follow.user.id) %>
+					</div>
+				
+					<div id="ago"> started following you <%= time_ago_in_words follow.created_at%> ago</div>				
+				</div>
+			
+			
+				<div id="request-noti">
+										
+								<% unless follow == current_user %>
+								
+								
+									<% if Request.exists? approval_id: follow.user.id %>												
+									<div id="btn-follow">
+										<%= link_to"Requested", remove_request_user_path(follow.user) %>
+									</div>
+									<% elsif current_user.following?(follow.user) %>
+										<div id="btn-following"><%= link_to "√ Following back", unfollow_user_path(follow.user) %></div>
+											
+									<% else %>
+										<div id="btn-follow"><%= link_to "+ Follow back", follow_user_path(follow.user) %></div>
+									<% end %>
+									
+
+								<% end %>
+				</div>
+			
+			</div>
+		</div>
+	<% end %>
+</div>

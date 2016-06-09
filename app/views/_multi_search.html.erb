@@ -1,0 +1,7 @@
+<!-- app\views\_multi_search.html.erb -->
+
+<%= form_tag my_path, :method=>'post', :multipart => true do %>
+   <!-- Key word:-->
+   <%= text_field_tag :search_string, nil, class: "search", placeholder: "Search"%>
+<% end %>
+

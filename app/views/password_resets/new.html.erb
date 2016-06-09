@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>Reset Password</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
+	<div id="bar">
+		<div id="bar-container">
+			<div id="bar-logo-2"><%= image_tag("banner_logo.png", alt: "Logo Image", height: 25) %></div>
+		</div>
+	</div>
+		
+	<div id="login-box">
+		<div id="login-content">
+			<div id="feedback-top" style = "text-align: left"> 
+				<!-- to display all params[] add an "=" to <%= debug params.to_s %> -->
+				<% debug params.to_s %> 
+				<!-- display in red -->
+				<% if flash[:alert] %>
+					<div id="alert" ><%= flash[:alert] %></div>
+				<% end %>
+				<!-- display in green -->
+				<% if flash[:notice] %>
+					<div id="notice"><%= flash[:notice] %></div>
+				<% end %>		
+			</div>
+			<%= form_tag password_resets_path, :method => :post do %>
+				<p><%= text_field_tag :email, params[:email], class: "inputs", placeholder: "someone@example.com" %></p>				
+				<p><%= submit_tag "Reset password", :class => "button_reset" %></p>
+			<% end %>
+			<%= button_to "Cancel", log_in_path, :method => :get, :class => "button_reset" %>
+			
+		</div>
+	</div>
+</body>
+
+</html>

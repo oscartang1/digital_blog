@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Sign Up</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
+	<div id="bar">
+		<div id="bar-container">
+			<div id="bar-logo-2"><%= image_tag("banner_logo.png", alt: "Logo Image", height: 25) %></div>
+		</div>
+	</div>
+		
+	<div id="login-box">
+	<div id="login-content">
+				
+		<%= form_for @user, :url => { :action => :create } do |f| %>
+				</br>
+		  	 <% if @user.errors.any? %>
+		   		<div id="error-msg">
+					<ol>
+			        <% for message in @user.errors.each_with_index %>
+			          <li><%= message[1] %></li>
+			        <% end %>
+					</ol>
+				</div>
+		  	 <% end %>
+				  <p>
+				    <%= f.text_field :f_name, class: "inputs", placeholder: "First Name"%>
+				  </p>
+				  <p>
+				    <%= f.text_field :s_name, class: "inputs", placeholder: "Last Name" %>
+				  </p>
+		 			<p>
+						<div id="photo-label">Photo</div>
+						<div id="photo-upload"><%= f.file_field :picture %></div>
+					</p>
+				  <p>
+				    <%= f.text_field :email, class: "inputs", placeholder: "someone@example.com" %>
+				  </p>
+				  <p>
+				    <%= f.password_field :password, class: "inputs", placeholder: "Password" %>
+				  </p>
+				  <p>
+				    <%= f.password_field :password_confirmation, class: "inputs", placeholder: "Confirm your password" %>
+				  </p>
+				
+				  <p><%= f.submit "Sign up", :class => "button" %></p>
+		<% end %>
+			
+				<p>Already have a Blog account? <%= link_to "Log in now", log_in_path %></p>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

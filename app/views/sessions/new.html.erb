@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Sign In</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
+	<div id="bar">
+		<div id="bar-container">
+			<div id="bar-logo-2"><%= image_tag("banner_logo.png", alt: "Logo Image", height: 25) %></div>
+		</div>
+	</div>
+	
+	<div id="login-box">
+	<div id="login-content">
+		
+				</br>
+				<%=image_tag("blog.jpg", alt: "Logo Image", width: 280)%>
+
+				<div id="feedback-top" style = "text-align: left"> 
+					<!-- to display all params[] add an "=" to <%= debug params.to_s %> -->
+					<% debug params.to_s %> 
+					<!-- display in red -->
+					<% if flash[:alert] %>
+						<div id="alert" ><%= flash[:alert] %></div>
+					<% end %>
+					<!-- display in green -->
+					<% if flash[:notice] %>
+						<div id="notice"><%= flash[:notice] %></div>
+					<% end %>		
+				</div>
+				
+				<%= form_tag sessions_path do %>
+				<p><%= text_field_tag :email, params[:email], class: "inputs", placeholder: "someone@example.com" %></p>
+				<p><%= password_field_tag :password, nil, class: "inputs", placeholder: "Password" %></p>
+				<p><%= submit_tag "Log in", class: "button" %></p>
+				<% end %>
+				
+				<p><%= link_to "forgotten password?", new_password_reset_path %></p>
+				<p>Don't have a Blog account? <%= link_to "Sign up now", sign_up_path %></p>
+	</div>
+	</div>
+</body>
+
+</html>

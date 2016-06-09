@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	  <title>Welcome</title>
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+
+	<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
+		<div id="bar">
+			<div id="bar-container">
+ 				<div id="bar-logo">
+					<%= link_to image_tag("home.png", alt: "Logo Image", height: 15), {:action => 'index', :controller => 'posts'} %>
+					<div id="bar-text">Home</div>
+				</div>
+ 				<div id="bar-logo">
+					<%= link_to image_tag("bell.png", alt: "Logo Image", height: 15), {:action => 'index', :controller => 'request'} %>
+					<div id="bar-text">Notifications</div>
+				</div>
+ 				<div id="bar-logo">
+					<%= link_to image_tag("me.png", alt: "Logo Image", height: 15), user_path(current_user) %>
+					<div id="bar-text">Me</div>
+				</div>
+				<!-- Start Search section -->
+				
+				<div id="bar-search" >
+					<%= render(:partial => '/multi_search', 
+					:locals=> {:users => @users = User.find(:all),
+					:my_path => '/users/search' })%> 	
+				</div>
+		  	 	<div id="search-logo"><%= link_to image_tag("search.png", alt: "Search", height: 15) %></div>
+				
+				<!-- End Search section -->
+			</div>
+		</div>
+		
+<div id="index-container">
+			<div id="user-info">
+				<div id="profile-body">
+					
+						<% if @user.picture_file_name != nil %>
+								<%= link_to image_tag(@user.picture.url(:medium)), user_path(params[:id]) %>
+						<% else %>						
+							<%= link_to image_tag("default_user.jpg", height: 90), user_path(params[:id]) %>
+						<% end %>
+					<div id="welcome-msg"><%= @user.f_name%> <%= @user.s_name %>.</div>
+				<div id="count">
+						<div id="count-figue"><%= link_to @user.posts.count, users_path(@user.id) %></div>
+						<div id="count-figue"><%= link_to @user.follow_count, following_user_path(params[:id]) %></div>
+						<div id="count-figue"><%= link_to @user.followers_count, followers_user_path(params[:id]) %></div>
+					
+						<div id="count-label">Posts</div>
+						<div id="count-label">Following</div>					
+						<div id="count-label">Followers</div>
+				</div>
+						<% if owner? %>
+							<div id="user-action">					
+					
+									<div id="button_c">
+											<%= image_tag("button_new.png", height: 12.5) %>
+											<%= link_to "New post", new_post_path, :method => :get %>
+									</div>
+									<div id="button_b">
+											<%= image_tag("button_profile.png", height: 12.5) %>
+											<%= link_to 'Edit profile', edit_user_path(current_user), :method => :get %>
+									</div>				
+									<%= button_to "Log out", log_out_path, :method => :get, :class => "button_logout", 
+										:confirm => "Log out?" %>
+							</div>
+						<% else %>
+							<div id="user-follow-action">
+																										
+								<% unless @user == current_user %>
+									<% if Request.exists? approval_id: @user.id %>		
+										<div id="btn-follow"><%= link_to"Requested", remove_request_user_path(@user) %></div>
+									<% elsif current_user.following?(@user) %>
+										<div id="btn-following"><%= link_to "√ Following", unfollow_user_path(@user) %></div>
+									<% else %>
+										<div id="btn-follow"><%= link_to "+ Follow", follow_user_path(@user) %></div>
+									<% end %>
+								<% end %>
+								
+							</div>
+						<% end %>
+						
+				</div>
+				
+				<div id="photos-body">
+					<% if owner?%>
+					<div id="photo-title">Photos</div>
+						<% @postphoto.each do |post| %>
+							<% if post.photo_file_name != nil %>
+									<%= link_to image_tag(post.photo.url(:thumb)), post %>
+							<% end %>
+						<% end %>
+					<% elsif @user.is_public %>
+						<% if current_user.following?(@user) == false %>
+							<div id="photo-title"><%= image_tag("lock.png", height: 30) %></div>
+						<% else %>
+							<div id="photo-title">Photos</div>
+								<% @postphoto.each do |post| %>
+									<% if post.photo_file_name != nil %>
+											<%= link_to image_tag(post.photo.url(:thumb)), post %>
+									<% end %>
+								<% end %>
+						<% end %>
+					<% else %>
+						<div id="photo-title">Photos</div>
+							<% @postphoto.each do |post| %>
+								<% if post.photo_file_name != nil %>
+										<%= link_to image_tag(post.photo.url(:thumb)), post %>
+								<% end %>
+							<% end %>
+					<% end %>
+					
+				</div>		
+			</div>
+			
+			<% if owner? %>
+				<!-- display post -->
+				<div id="post-body">
+					<div id="post-box">
+						<div id="title-post"><%= image_tag("blog.png", height: 30) %> posts</div>
+					</div>
+						<% @post.each do |post| %>
+							<div id="post-box">
+								<div id="post-header">
+									<div id="post-title"><%= post.created_at.strftime("#{post.created_at.day.ordinalize} %B %Y") %></div>
+									<% if owner? %>
+										<div id="delete-png"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), post, :method => :delete, :confirm => "Delete post?" %></div>
+									<% end %>
+								</div>
+								<div id="content">
+									<% if post.photo_file_name != nil %>
+										<div id="photo-text"><%= simple_format(auto_link(post.text)) %></div>
+										<div id="photo"><%= link_to image_tag(post.photo.url(:medium)), post %></div>
+									<% else%>
+										<%= simple_format(auto_link(post.text)) %>
+									<% end %>
+								</div>
+								<div id="command-container">
+								
+									<!-- start of the like button -->
+									<% @post = post.id %>
+									<% @like_count = post %>
+									<div id="button_comment">
+										<div id="like_button_for_<%= @post %>">
+											<% if post.liked_by?(current_user)%>
+											<%= render 'liked' %>
+											<!-- <%= link_to 'liked', unlike_post_path(post.id) %> -->
+											<% else %>
+											<%= render 'like' %>											
+											<!-- <%= link_to 'like', like_post_path(post.id) %> -->
+											<% end %>
+										</div>
+									</div>
+									<!-- end of the like button -->
+
+
+									<div id="button_comment">
+											<%= image_tag("button_comment.png", height: 12.5) %>
+											<% count_comment = Review.find_all_by_post_id(post.id) %>
+											<%= count_comment.count %>
+											<%= link_to ' comments', post %>
+									</div>
+									<div id="button_comment">
+											<%= link_to image_tag("add_comment.png", height: 18), reviews_new_path(post.id), method: :post %> 
+									</div>
+									<div id="time-span"><%= time_ago_in_words post.created_at %> ago</div>
+								</div>
+								</br>
+								</br>
+							</div>
+						<% end %>
+				</div>
+			<% elsif @user.is_public %>
+				<% if current_user.following?(@user) == false %>
+					<!-- hide post --> 
+					<div id="post-body">
+						<div id="post-box">
+							<div id="title-post"><%= image_tag("lock.png", height: 30) %></div>
+						</div>
+					</div>
+				<% else %>
+					<!-- display post -->
+					<div id="post-body">
+						<div id="post-box">
+							<div id="title-post"><%= image_tag("blog.png", height: 30) %>posts</div>
+						</div>
+							<% @post.each do |post| %>
+								<div id="post-box">
+									<div id="post-header">
+										<div id="post-title"><%= post.created_at.strftime("#{post.created_at.day.ordinalize} %B %Y") %></div>
+										<% if owner? %>
+											<div id="delete-png"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), post, :method => :delete, :confirm => "Delete post?" %></div>
+										<% end %>
+									</div>
+									<div id="content">
+										<% if post.photo_file_name != nil %>
+											<div id="photo-text"><%= simple_format(auto_link(post.text)) %></div>
+											<div id="photo"><%= link_to image_tag(post.photo.url(:medium)), post %></div>
+										<% else%>
+											<%= simple_format(auto_link(post.text)) %>
+										<% end %>
+									</div>
+									<div id="command-container">
+									
+									<!-- start of the like button -->
+									<% @post = post.id %>
+									<% @like_count = post %>
+									<div id="button_comment">
+										<div id="like_button_for_<%= @post %>">
+											<% if post.liked_by?(current_user)%>
+											<%= render 'liked' %>
+											<!-- <%= link_to 'liked', unlike_post_path(post.id) %> -->
+											<% else %>
+											<%= render 'like' %>											
+											<!-- <%= link_to 'like', like_post_path(post.id) %> -->
+											<% end %>
+										</div>
+									</div>
+									<!-- end of the like button -->
+										<div id="button_comment">
+												<%= image_tag("button_comment.png", height: 12.5) %>
+												<% count_comment = Review.find_all_by_post_id(post.id) %>
+												<%= count_comment.count %>
+												<%= link_to ' Comments', post %>
+										</div>
+										<div id="button_comment">
+												<%= link_to image_tag("add_comment.png", height: 18), reviews_new_path(post.id), method: :post %> 
+										</div>
+										<div id="time-span"><%= time_ago_in_words post.created_at %> ago</div>
+									</div>
+									</br>
+									</br>
+								</div>
+							<% end %>
+					</div>
+				<% end %>
+			<% else %>
+				/* display post */ <div id="post-body">
+					<div id="post-box">
+						<div id="title-post"><%= image_tag("blog.png", height: 30) %>posts</div>
+					</div>
+						<% @post.each do |post| %>
+							<div id="post-box">
+								<div id="post-header">
+									<div id="post-title"><%= post.created_at.strftime("#{post.created_at.day.ordinalize} %B %Y") %></div>
+									<% if owner? %>
+										<div id="delete-png"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), post, :method => :delete, :confirm => "Delete post?" %></div>
+									<% end %>
+								</div>
+								<div id="content">
+									<% if post.photo_file_name != nil %>
+										<div id="photo-text"><%= simple_format(auto_link(post.text)) %></div>
+										<div id="photo"><%= link_to image_tag(post.photo.url(:medium)), post %></div>
+									<% else%>
+										<%= simple_format(auto_link(post.text)) %>
+									<% end %>
+								</div>
+								<div id="command-container">
+								
+																	<!-- start of the like button -->
+									<% @post = post.id %>
+									<% @like_count = post %>
+									<div id="button_comment">
+										<div id="like_button_for_<%= @post %>">
+											<% if post.liked_by?(current_user)%>
+											<%= render 'liked' %>
+											<!-- <%= link_to 'liked', unlike_post_path(post.id) %> -->
+											<% else %>
+											<%= render 'like' %>											
+											<!-- <%= link_to 'like', like_post_path(post.id) %> -->
+											<% end %>
+										</div>
+									</div>
+									<!-- end of the like button -->
+									<div id="button_comment">
+											<%= image_tag("button_comment.png", height: 12.5) %>
+											<% count_comment = Review.find_all_by_post_id(post.id) %>
+											<%= count_comment.count %>
+											<%= link_to ' Comments', post %>
+									</div>
+									<div id="button_comment">
+											<%= link_to image_tag("add_comment.png", height: 18), reviews_new_path(post.id), method: :post %> 
+									</div>
+									<div id="time-span"><%= time_ago_in_words post.created_at %> ago</div>
+								</div>
+								</br>
+								</br>
+							</div>
+						<% end %>
+				</div>
+			<% end %>
+</div>
+
+	</body>
+</html>

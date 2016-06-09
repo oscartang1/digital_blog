@@ -1,0 +1,24 @@
+<!-- <app/views/reviews/displays.html.erb> -->
+<div class="centre-content"> 
+
+	<table>
+		<tr>
+			<th>Reviewer</th>
+			<th>Review</th>
+			<th>Stars</th>
+		</tr>
+		<% for review in @reviews %>
+			<tr>
+				<td><%= review.name %></td>
+				<td><%= review.review_text.truncate(30) %></td>
+				<td><%= review.no_of_stars %></td>
+				<td><%= link_to 'Show', review %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<br />
+
+	<%#= link_to 'Back to the book store', :controller => 'store', :action => 'index' %>
+	<%= link_to 'Back', :back%>
+</div>

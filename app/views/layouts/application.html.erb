@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	  <title>Welcome</title>
+	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+
+	<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
+		<% if params[:id] == nil %>
+		<div id="bar">
+			<div id="bar-container">
+ 				<div id="bar-logo">
+					<%= link_to image_tag("home.png", alt: "Logo Image", height: 15), {:action => 'index', :controller => 'posts'} %>
+					<div id="bar-text">Home</div>
+				</div>
+ 				<div id="bar-logo">
+					<%= link_to image_tag("bell.png", alt: "Logo Image", height: 15), {:action => 'index', :controller => 'request'} %>
+					<div id="bar-text">Notifications</div>
+				</div>
+ 				<div id="bar-logo">
+					<%= link_to image_tag("me.png", alt: "Logo Image", height: 15), user_path(current_user) %>
+					<div id="bar-text">Me</div>
+				</div>
+				<!-- Start Search section -->
+				<div id="bar-search" >
+					<%= render(:partial => '/multi_search', 
+					:locals=> {:users => @users = User.find(:all),
+					:my_path => '/users/search' })%> 	
+				</div>
+		  	 	<div id="search-logo"><%= link_to image_tag("search.png", alt: "Search", height: 15) %></div>			
+				<!-- End Search section -->
+			</div>
+		</div>
+		<div id="index-container">
+			<div id="user-info">
+			<div id="profile-body">	
+				<% if current_user.picture_file_name != nil %>
+					<%= link_to image_tag(current_user.picture.url(:medium)), users_path(current_user.id) %>
+				<% else %>
+					<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 90), user_path(current_user.id) %>
+				<% end %>
+				<div id="welcome-msg"><%= current_user.f_name%> <%= current_user.s_name %>.</div>
+				<div id="count">
+						<div id="count-figue"><%= link_to count_posts, users_path(current_user.id) %></div>
+						<div id="count-figue">
+							<%= link_to current_user.follow_count, following_user_path(current_user.id) %>
+						</div>
+						<div id="count-figue">
+							<%= link_to current_user.followers_count, followers_user_path(current_user.id) %>
+						</div>
+					
+						<div id="count-label">Posts</div>
+						<div id="count-label">Following</div>					
+						<div id="count-label">Followers</div>
+				</div>
+				
+				<div id="user-follow-action">
+					
+					<div id="button_c">
+							<%= image_tag("button_new.png", height: 12.5) %>
+							<%= link_to "New post", new_post_path, :method => :get %>
+					</div>
+					
+				</div>
+			</div>
+			
+				<div id="photos-body">
+							<div id="photo-title">Photos</div>
+							<% current_user.posts.order('created_at desc').limit(12).each do |post| %>
+								<% if post.photo_file_name != nil %>
+										<%= link_to image_tag(post.photo.url(:thumb)), post %>
+								<% end %>
+							<% end %>
+						</div>
+				</div>		
+			
+			<%= yield %>
+		</div>
+		<% end %>
+	</body>
+</html>

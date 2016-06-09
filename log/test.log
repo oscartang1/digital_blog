@@ -1,0 +1,370 @@
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")
+  [1m[36m (1.7ms)[0m  [1mCREATE INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "liker_type" varchar(255), "liker_id" integer, "likeable_type" varchar(255), "likeable_id" integer, "created_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "fk_likeables" ON "likes" ("likeable_id", "likeable_type")[0m
+  [1m[35m (1.2ms)[0m  CREATE INDEX "fk_likes" ON "likes" ("liker_id", "liker_type")
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "mentions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mentioner_type" varchar(255), "mentioner_id" integer, "mentionable_type" varchar(255), "mentionable_id" integer, "created_at" datetime) [0m
+  [1m[35m (1.3ms)[0m  CREATE INDEX "fk_mentionables" ON "mentions" ("mentionable_id", "mentionable_type")
+  [1m[36m (1.4ms)[0m  [1mCREATE INDEX "fk_mentions" ON "mentions" ("mentioner_id", "mentioner_type")[0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text, "created_at" datetime, "updated_at" datetime, "user_id" integer, "photo_file_name" varchar(255), "photo_content_type" varchar(255), "photo_file_size" integer, "photo_updated_at" datetime) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "request_id" integer, "approval_id" integer, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "reviews" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "review_text" text, "created_at" datetime, "updated_at" datetime, "user_id" integer) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "f_name" varchar(255), "s_name" varchar(255), "email" varchar(255), "password_hash" varchar(255), "password_salt" varchar(255), "created_at" datetime, "updated_at" datetime, "password_reset_token" varchar(255), "password_reset_sent_at" datetime, "picture_file_name" varchar(255), "picture_content_type" varchar(255), "picture_file_size" integer, "picture_updated_at" datetime, "is_public" boolean) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425210456')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131210084015')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140411224650')[0m
+  [1m[35m (1.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140415150749')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140420170753')[0m
+  [1m[35m (2.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140420172816')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140421233620')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140422153953')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140422231009')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140424122821')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140424145108')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140425210455')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Unable to load comment, underlying cause No such file to load -- comment 
+
+ /Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:329:in `require_or_load'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:288:in `depend_on'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:206:in `require_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:773:in `try_to_load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:792:in `block in require_fixture_classes'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:790:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:790:in `require_fixture_classes'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:768:in `fixtures'
+/Users/oscartang/Desktop/Sites/blog/test/test_helper.rb:12:in `<class:TestCase>'
+/Users/oscartang/Desktop/Sites/blog/test/test_helper.rb:5:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/Desktop/Sites/blog/test/helpers/comments_helper_test.rb:1:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `block (3 levels) in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `block (2 levels) in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:72:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:72:in `block in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `call'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `block in execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:201:in `block in invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:178:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:165:in `invoke'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/testing.rake:61:in `block in <top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `call'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `block in execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:201:in `block in invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:178:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:165:in `invoke'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:150:in `invoke_task'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `block (2 levels) in top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `block in top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:115:in `run_with_threads'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:100:in `top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:78:in `block in run'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:176:in `standard_exception_handling'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:75:in `run'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/bin/rake:33:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/bin/rake:23:in `load'
+/Users/oscartang/.rbenv/versions/2.2.3/bin/rake:23:in `<main>'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.8ms)[0m  CREATE INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")
+  [1m[36m (1.7ms)[0m  [1mCREATE INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (4.3ms)[0m  CREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "liker_type" varchar(255), "liker_id" integer, "likeable_type" varchar(255), "likeable_id" integer, "created_at" datetime) 
+  [1m[36m (2.0ms)[0m  [1mCREATE INDEX "fk_likeables" ON "likes" ("likeable_id", "likeable_type")[0m
+  [1m[35m (1.9ms)[0m  CREATE INDEX "fk_likes" ON "likes" ("liker_id", "liker_type")
+  [1m[36m (34.8ms)[0m  [1mCREATE TABLE "mentions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mentioner_type" varchar(255), "mentioner_id" integer, "mentionable_type" varchar(255), "mentionable_id" integer, "created_at" datetime) [0m
+  [1m[35m (53.8ms)[0m  CREATE INDEX "fk_mentionables" ON "mentions" ("mentionable_id", "mentionable_type")
+  [1m[36m (39.6ms)[0m  [1mCREATE INDEX "fk_mentions" ON "mentions" ("mentioner_id", "mentioner_type")[0m
+  [1m[35m (91.3ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" text, "created_at" datetime, "updated_at" datetime, "user_id" integer, "photo_file_name" varchar(255), "photo_content_type" varchar(255), "photo_file_size" integer, "photo_updated_at" datetime) 
+  [1m[36m (26.8ms)[0m  [1mCREATE TABLE "requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "request_id" integer, "approval_id" integer, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "reviews" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "review_text" text, "created_at" datetime, "updated_at" datetime, "user_id" integer) 
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "f_name" varchar(255), "s_name" varchar(255), "email" varchar(255), "password_hash" varchar(255), "password_salt" varchar(255), "created_at" datetime, "updated_at" datetime, "password_reset_token" varchar(255), "password_reset_sent_at" datetime, "picture_file_name" varchar(255), "picture_content_type" varchar(255), "picture_file_size" integer, "picture_updated_at" datetime, "is_public" boolean) [0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (2.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (109.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140425210456')[0m
+  [1m[35m (2.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131210084015')
+  [1m[36m (2.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140411224650')[0m
+  [1m[35m (20.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140415150749')
+  [1m[36m (2.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140420170753')[0m
+  [1m[35m (3.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140420172816')
+  [1m[36m (50.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140421233620')[0m
+  [1m[35m (27.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140422153953')
+  [1m[36m (2.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140422231009')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140424122821')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140424145108')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140425210455')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Unable to load comment, underlying cause No such file to load -- comment 
+
+ /Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:329:in `require_or_load'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:288:in `depend_on'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:206:in `require_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:773:in `try_to_load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:792:in `block in require_fixture_classes'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:790:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:790:in `require_fixture_classes'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activerecord-4.0.0/lib/active_record/fixtures.rb:768:in `fixtures'
+/Users/oscartang/Desktop/Sites/blog/test/test_helper.rb:12:in `<class:TestCase>'
+/Users/oscartang/Desktop/Sites/blog/test/test_helper.rb:5:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/Desktop/Sites/blog/test/helpers/comments_helper_test.rb:1:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `block (3 levels) in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:73:in `block (2 levels) in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:72:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/sub_test_task.rb:72:in `block in define'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `call'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `block in execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:201:in `block in invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:178:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:165:in `invoke'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/railties-4.0.0/lib/rails/test_unit/testing.rake:61:in `block in <top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `call'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:240:in `block in execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:235:in `execute'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:201:in `block in invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:199:in `invoke_prerequisites'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:178:in `block in invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:172:in `invoke_with_call_chain'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/task.rb:165:in `invoke'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:150:in `invoke_task'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `block (2 levels) in top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `each'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:106:in `block in top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:115:in `run_with_threads'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:100:in `top_level'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:78:in `block in run'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:176:in `standard_exception_handling'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/lib/rake/application.rb:75:in `run'
+/Users/oscartang/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/rake-10.3.1/bin/rake:33:in `<top (required)>'
+/Users/oscartang/.rbenv/versions/2.2.3/bin/rake:23:in `load'
+/Users/oscartang/.rbenv/versions/2.2.3/bin/rake:23:in `<main>'
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "comments"[0m
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "comments"
+SQLite3::SQLException: no such table: comments: DELETE FROM "comments"
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m

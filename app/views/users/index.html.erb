@@ -1,0 +1,30 @@
+<div id="post-body">
+	<div id="post-box">
+		</br>
+		<div id="title"><%= @users.count %> users found</div>
+		</br>
+	</div>	
+	<% @users.each do |user| %>
+		<div id="post-box">
+			<div id="author">
+			
+				<div id="author-pic">
+					<% if user.picture_file_name != nil %>
+						<%= link_to image_tag(user.picture.url(:thumb)), users_path(user.id) %>
+					<% else %>
+						<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), 								users_path(user.id)%>
+					<% end %>
+				</div>
+			
+				<div id="author-name">
+					<%= link_to user.f_name.capitalize + " " + user.s_name.capitalize, user_path(user.id) %>
+				</div>
+			
+				<div id="ago">
+					Joined <%= time_ago_in_words user.created_at %> ago
+				</div>
+			
+			</div>
+		</div>
+	<% end %>
+</div>

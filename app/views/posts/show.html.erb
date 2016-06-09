@@ -1,0 +1,196 @@
+			<% if owner? %>
+<div id="post-body">
+	<div id="post-box">
+		<div id="post-header">
+		<div id="author-info">
+			<div id="author-pic">
+				<% if @post.user.picture_file_name != nil %>
+					<%= link_to image_tag(@post.user.picture.url(:thumb)), users_path(@post.user.id) %>
+				<% else %>
+					<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), users_path(@post.user.id)%>
+				<% end %>
+			</div>
+			<div id="author-name"><%= link_to @post.user.f_name.capitalize + " " + @post.user.s_name.capitalize, user_path(@post.user.id) %></div>
+			<div id="ago"><%= time_ago_in_words @post.created_at %> ago</div>
+		</div>
+		<% if current_user.id == @post.user_id %>
+			<div id="delete-png">
+				<%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), @posts, :method => :delete, :confirm => "Delete post?" %>
+			</div>
+		<% end %>
+	</div>
+
+		<div id="show-text">
+					<% if @post.photo_file_name != nil %>
+						<div id="show-photo-text"><%= simple_format(auto_link(@post.text)) %></div>
+						<div id="show-photo-full"><%= image_tag @post.photo.url(:full) %></div>
+					<% else%>
+						<%= simple_format(auto_link(@post.text)) %>
+					<% end %>
+		</div>
+		</br>
+		<% @post.reviews.each do |review| %>
+			<div id="comment-box">
+				
+				<div id="first-row">
+					<div id="blue-text"><%= link_to review.user.f_name.capitalize + " " + review.user.s_name.capitalize, user_path(review.user.id) %></div>
+					<div id="comments-timespan"><%= time_ago_in_words review.created_at %> ago</div>
+				</div> 
+				
+				<div id="secound-row">
+					<div id="comments-text"><%= review.review_text %></div>
+					<% if review.user_id == current_user.id %>
+						<div id="comments-command"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), review, :method => :delete, :confirm => 'Delete comment?' %></div>
+					<% end %>
+				</div>	
+				
+			</div>
+		<% end %>
+		
+		<div id="show_add_button">
+			
+			<div id="button_add_comment">
+					<%= link_to image_tag("add_comment.png", height: 25), reviews_new_path(@post.id), method: :post %> 
+			</div>
+			
+		</div>
+		
+		</br>
+		</br>
+		</br>
+	</div>
+</div>
+			<% elsif @user.is_public %>
+				<% if current_user.following?(@user) == false %>
+					<div id="post-body">
+						<div id="post-box">
+							<div id="title-post"><%= image_tag("lock.png", height: 30) %></div>
+						</div>
+					</div>
+				<% else %>
+<div id="post-body">
+	<div id="post-box">
+		<div id="post-header">
+		<div id="author-info">
+			<div id="author-pic">
+				<% if @post.user.picture_file_name != nil %>
+					<%= link_to image_tag(@post.user.picture.url(:thumb)), users_path(@post.user.id) %>
+				<% else %>
+					<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), users_path(@post.user.id)%>
+				<% end %>
+			</div>
+			<div id="author-name"><%= link_to @post.user.f_name.capitalize + " " + @post.user.s_name.capitalize, user_path(@post.user.id) %></div>
+			<div id="ago"><%= time_ago_in_words @post.created_at %> ago</div>
+		</div>
+		<% if current_user.id == @post.user_id %>
+			<div id="delete-png">
+				<%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), @posts, :method => :delete, :confirm => "Delete post?" %>
+			</div>
+		<% end %>
+	</div>
+
+		<div id="show-text">
+					<% if @post.photo_file_name != nil %>
+						<div id="show-photo-text"><%= simple_format(auto_link(@post.text)) %></div>
+						<div id="show-photo-full"><%= image_tag @post.photo.url(:full) %></div>
+					<% else%>
+						<%= simple_format(auto_link(@post.text)) %>
+					<% end %>
+		</div>
+		</br>
+		<% @post.reviews.each do |review| %>
+			<div id="comment-box">
+				
+				<div id="first-row">
+					<div id="blue-text"><%= link_to review.user.f_name.capitalize + " " + review.user.s_name.capitalize, user_path(review.user.id) %></div>
+					<div id="comments-timespan"><%= time_ago_in_words review.created_at %> ago</div>
+				</div> 
+				
+				<div id="secound-row">
+					<div id="comments-text"><%= review.review_text %></div>
+					<% if review.user_id == current_user.id %>
+						<div id="comments-command"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), review, :method => :delete, :confirm => 'Delete comment?' %></div>
+					<% end %>
+				</div>	
+				
+			</div>
+		<% end %>
+		
+		<div id="show_add_button">
+			
+			<div id="button_add_comment">
+					<%= link_to image_tag("add_comment.png", height: 25), reviews_new_path(@post.id), method: :post %> 
+			</div>
+			
+		</div>
+		
+		</br>
+		</br>
+		</br>
+	</div>
+</div>
+				<% end %>
+			<% else %>
+<div id="post-body">
+	<div id="post-box">
+		<div id="post-header">
+		<div id="author-info">
+			<div id="author-pic">
+				<% if @post.user.picture_file_name != nil %>
+					<%= link_to image_tag(@post.user.picture.url(:thumb)), users_path(@post.user.id) %>
+				<% else %>
+					<%= link_to image_tag("default_user.jpg", alt: "user Image", height: 40), users_path(@post.user.id)%>
+				<% end %>
+			</div>
+			<div id="author-name"><%= link_to @post.user.f_name.capitalize + " " + @post.user.s_name.capitalize, user_path(@post.user.id) %></div>
+			<div id="ago"><%= time_ago_in_words @post.created_at %> ago</div>
+		</div>
+		<% if current_user.id == @post.user_id %>
+			<div id="delete-png">
+				<%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), @posts, :method => :delete, :confirm => "Delete post?" %>
+			</div>
+		<% end %>
+	</div>
+
+		<div id="show-text">
+					<% if @post.photo_file_name != nil %>
+						<div id="show-photo-text"><%= simple_format(auto_link(@post.text)) %></div>
+						<div id="show-photo-full"><%= image_tag @post.photo.url(:full) %></div>
+					<% else%>
+						<%= simple_format(auto_link(@post.text)) %>
+					<% end %>
+		</div>
+		</br>
+		<% @post.reviews.each do |review| %>
+			<div id="comment-box">
+				
+				<div id="first-row">
+					<div id="blue-text"><%= link_to review.user.f_name.capitalize + " " + review.user.s_name.capitalize, user_path(review.user.id) %></div>
+					<div id="comments-timespan"><%= time_ago_in_words review.created_at %> ago</div>
+				</div> 
+				
+				<div id="secound-row">
+					<div id="comments-text"><%= review.review_text %></div>
+					<% if review.user_id == current_user.id %>
+						<div id="comments-command"><%= link_to image_tag("button_delete.png", alt: "Delete", height: 15), review, :method => :delete, :confirm => 'Delete comment?' %></div>
+					<% end %>
+				</div>	
+				
+			</div>
+		<% end %>
+		
+		<div id="show_add_button">
+			
+			<div id="button_add_comment">
+					<%= link_to image_tag("add_comment.png", height: 25), reviews_new_path(@post.id), method: :post %> 
+			</div>
+			
+		</div>
+		
+		</br>
+		</br>
+		</br>
+	</div>
+</div>
+			<% end %>
+

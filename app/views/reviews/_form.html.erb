@@ -1,0 +1,22 @@
+<%= form_for(@review) do |f| %>
+	<% if @review.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+			<ul>
+			<% @review.errors.each_with_index do |msg, i| %>
+				<li><%= msg[1] %></li>
+			<% end %>
+			</ul>
+    	</div>
+	<% end %>
+
+ 	<%= f.hidden_field :post_id %>
+	<div id="text-area">
+		<%= f.text_area :review_text, :class => "inputs" %>
+		<div class="actions">
+			<%= f.submit "Comment", :class => "button_post" %>
+			<%= button_to_function "Cancel", "history.back()", :class => "button_post" %>
+		</div>
+	</div>
+	
+<% end %>
