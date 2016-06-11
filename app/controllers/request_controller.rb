@@ -1,6 +1,6 @@
 class RequestController < ApplicationController
 
-  before_filter :require_login
+  before_filter :require_login, :only => [:index]
   
   def new
   end
