@@ -1,0 +1,120 @@
+I, [2016-06-11T19:01:06.241280 #1393]  INFO -- : Started GET "/posts" for 86.154.34.237 at 2016-06-11 19:01:06 -0400
+I, [2016-06-11T19:01:06.266866 #1393]  INFO -- : Processing by PostsController#index as HTML
+I, [2016-06-11T19:01:06.363483 #1393]  INFO -- :   Rendered users/_liked.erb (2.5ms)
+I, [2016-06-11T19:01:06.394251 #1393]  INFO -- :   Rendered users/_like.erb (2.5ms)
+I, [2016-06-11T19:01:06.402633 #1393]  INFO -- :   Rendered users/_like.erb (1.3ms)
+I, [2016-06-11T19:01:06.410185 #1393]  INFO -- :   Rendered users/_liked.erb (1.6ms)
+I, [2016-06-11T19:01:06.416684 #1393]  INFO -- :   Rendered users/_liked.erb (1.5ms)
+I, [2016-06-11T19:01:06.425852 #1393]  INFO -- :   Rendered users/_like.erb (2.0ms)
+I, [2016-06-11T19:01:06.427952 #1393]  INFO -- :   Rendered posts/index.html.erb within layouts/application (93.4ms)
+I, [2016-06-11T19:01:06.435771 #1393]  INFO -- :   Rendered _multi_search.html.erb (1.0ms)
+I, [2016-06-11T19:01:06.444532 #1393]  INFO -- : Completed 200 OK in 177ms (Views: 105.1ms | ActiveRecord: 13.8ms)
+I, [2016-06-11T19:01:09.200287 #1398]  INFO -- : Started GET "/posts/40/unlike" for 86.154.34.237 at 2016-06-11 19:01:09 -0400
+I, [2016-06-11T19:01:09.225882 #1398]  INFO -- : Processing by PostsController#unlike as JS
+I, [2016-06-11T19:01:09.226021 #1398]  INFO -- :   Parameters: {"id"=>"40"}
+I, [2016-06-11T19:01:09.306093 #1398]  INFO -- :   Rendered users/_like.erb (3.3ms)
+I, [2016-06-11T19:01:09.306306 #1398]  INFO -- :   Rendered users/unlike.js.erb (5.2ms)
+I, [2016-06-11T19:01:09.306630 #1398]  INFO -- : Completed 200 OK in 80ms (Views: 8.3ms | ActiveRecord: 13.6ms)
+I, [2016-06-11T19:01:10.032326 #1393]  INFO -- : Started GET "/posts/40/like" for 86.154.34.237 at 2016-06-11 19:01:10 -0400
+I, [2016-06-11T19:01:10.036333 #1393]  INFO -- : Processing by PostsController#like as JS
+I, [2016-06-11T19:01:10.036429 #1393]  INFO -- :   Parameters: {"id"=>"40"}
+I, [2016-06-11T19:01:10.088510 #1393]  INFO -- :   Rendered users/_liked.erb (4.1ms)
+I, [2016-06-11T19:01:10.088759 #1393]  INFO -- :   Rendered users/like.js.erb (6.0ms)
+I, [2016-06-11T19:01:10.089150 #1393]  INFO -- : Completed 200 OK in 53ms (Views: 8.9ms | ActiveRecord: 10.8ms)
+I, [2016-06-11T19:01:15.603068 #1398]  INFO -- : Started GET "/users/1" for 86.154.34.237 at 2016-06-11 19:01:15 -0400
+I, [2016-06-11T19:01:15.609461 #1398]  INFO -- : Processing by UsersController#show as HTML
+I, [2016-06-11T19:01:15.609537 #1398]  INFO -- :   Parameters: {"id"=>"1"}
+I, [2016-06-11T19:01:15.635056 #1398]  INFO -- :   Rendered _multi_search.html.erb (1.2ms)
+I, [2016-06-11T19:01:15.669511 #1398]  INFO -- :   Rendered users/_like.erb (1.9ms)
+I, [2016-06-11T19:01:15.687799 #1398]  INFO -- :   Rendered users/_liked.erb (2.2ms)
+I, [2016-06-11T19:01:15.693725 #1398]  INFO -- :   Rendered users/_like.erb (1.4ms)
+I, [2016-06-11T19:01:15.695300 #1398]  INFO -- :   Rendered users/show.html.erb (74.1ms)
+I, [2016-06-11T19:01:15.695599 #1398]  INFO -- : Completed 200 OK in 86ms (Views: 71.6ms | ActiveRecord: 4.9ms)
+I, [2016-06-11T19:01:17.315481 #1393]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:17 -0400
+I, [2016-06-11T19:01:17.320700 #1393]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:17.344983 #1393]  INFO -- :   Rendered request/index.html.erb within layouts/application (14.1ms)
+I, [2016-06-11T19:01:17.350169 #1393]  INFO -- :   Rendered _multi_search.html.erb (1.1ms)
+I, [2016-06-11T19:01:17.358985 #1393]  INFO -- : Completed 200 OK in 38ms (Views: 28.3ms | ActiveRecord: 2.8ms)
+I, [2016-06-11T19:01:18.960134 #1398]  INFO -- : Started GET "/request/confirm?id=4" for 86.154.34.237 at 2016-06-11 19:01:18 -0400
+I, [2016-06-11T19:01:18.964179 #1398]  INFO -- : Processing by RequestController#confirm as HTML
+I, [2016-06-11T19:01:18.964263 #1398]  INFO -- :   Parameters: {"authenticity_token"=>"UccRz7SCOI1Tn6HN72/78tf77Lp7m6OWEjqIhk0P+HE=", "id"=>"4"}
+I, [2016-06-11T19:01:19.001003 #1398]  INFO -- : Redirected to http://digitallog.co.uk/request
+I, [2016-06-11T19:01:19.001287 #1398]  INFO -- : Completed 302 Found in 37ms (ActiveRecord: 12.1ms)
+I, [2016-06-11T19:01:19.025715 #1393]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:19 -0400
+I, [2016-06-11T19:01:19.031669 #1393]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:19.054593 #1393]  INFO -- :   Rendered request/index.html.erb within layouts/application (8.0ms)
+I, [2016-06-11T19:01:19.057888 #1393]  INFO -- :   Rendered _multi_search.html.erb (0.4ms)
+I, [2016-06-11T19:01:19.065158 #1393]  INFO -- : Completed 200 OK in 33ms (Views: 18.0ms | ActiveRecord: 2.2ms)
+I, [2016-06-11T19:01:20.234728 #1398]  INFO -- : Started GET "/users/4/remove_request" for 86.154.34.237 at 2016-06-11 19:01:20 -0400
+I, [2016-06-11T19:01:20.238837 #1398]  INFO -- : Processing by UsersController#remove_request as HTML
+I, [2016-06-11T19:01:20.238921 #1398]  INFO -- :   Parameters: {"id"=>"4"}
+I, [2016-06-11T19:01:20.252274 #1398]  INFO -- : Redirected to http://digitallog.co.uk/request
+I, [2016-06-11T19:01:20.253806 #1398]  INFO -- : Completed 302 Found in 15ms (ActiveRecord: 8.7ms)
+I, [2016-06-11T19:01:20.276472 #1393]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:20 -0400
+I, [2016-06-11T19:01:20.277892 #1393]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:20.287084 #1393]  INFO -- :   Rendered request/index.html.erb within layouts/application (5.6ms)
+I, [2016-06-11T19:01:20.290600 #1393]  INFO -- :   Rendered _multi_search.html.erb (0.4ms)
+I, [2016-06-11T19:01:20.298598 #1393]  INFO -- : Completed 200 OK in 21ms (Views: 16.0ms | ActiveRecord: 1.9ms)
+I, [2016-06-11T19:01:23.589287 #1398]  INFO -- : Started GET "/users/4/follow" for 86.154.34.237 at 2016-06-11 19:01:23 -0400
+I, [2016-06-11T19:01:23.590993 #1398]  INFO -- : Processing by UsersController#follow as HTML
+I, [2016-06-11T19:01:23.591049 #1398]  INFO -- :   Parameters: {"id"=>"4"}
+I, [2016-06-11T19:01:23.600782 #1398]  INFO -- : Redirected to http://digitallog.co.uk/request
+I, [2016-06-11T19:01:23.601112 #1398]  INFO -- : Completed 302 Found in 10ms (ActiveRecord: 4.1ms)
+I, [2016-06-11T19:01:23.633143 #1396]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:23 -0400
+I, [2016-06-11T19:01:23.664638 #1396]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:23.744561 #1396]  INFO -- :   Rendered request/index.html.erb within layouts/application (26.6ms)
+I, [2016-06-11T19:01:23.753033 #1396]  INFO -- :   Rendered _multi_search.html.erb (1.2ms)
+I, [2016-06-11T19:01:23.776137 #1396]  INFO -- : Completed 200 OK in 111ms (Views: 58.3ms | ActiveRecord: 8.3ms)
+I, [2016-06-11T19:01:31.725847 #1398]  INFO -- : Started GET "/users/1" for 86.154.34.237 at 2016-06-11 19:01:31 -0400
+I, [2016-06-11T19:01:31.728759 #1398]  INFO -- : Processing by UsersController#show as HTML
+I, [2016-06-11T19:01:31.728983 #1398]  INFO -- :   Parameters: {"id"=>"1"}
+I, [2016-06-11T19:01:31.741924 #1398]  INFO -- :   Rendered _multi_search.html.erb (0.8ms)
+I, [2016-06-11T19:01:31.757241 #1398]  INFO -- :   Rendered users/_like.erb (1.6ms)
+I, [2016-06-11T19:01:31.763965 #1398]  INFO -- :   Rendered users/_liked.erb (1.7ms)
+I, [2016-06-11T19:01:31.770664 #1398]  INFO -- :   Rendered users/_like.erb (1.7ms)
+I, [2016-06-11T19:01:31.772445 #1398]  INFO -- :   Rendered users/show.html.erb (36.3ms)
+I, [2016-06-11T19:01:31.772692 #1398]  INFO -- : Completed 200 OK in 44ms (Views: 33.9ms | ActiveRecord: 3.8ms)
+I, [2016-06-11T19:01:34.151165 #1396]  INFO -- : Started GET "/log_out" for 86.154.34.237 at 2016-06-11 19:01:34 -0400
+I, [2016-06-11T19:01:34.154502 #1396]  INFO -- : Processing by SessionsController#destroy as HTML
+I, [2016-06-11T19:01:34.156928 #1396]  INFO -- : Redirected to http://digitallog.co.uk/
+I, [2016-06-11T19:01:34.169712 #1396]  INFO -- : Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:34.192657 #1398]  INFO -- : Started GET "/" for 86.154.34.237 at 2016-06-11 19:01:34 -0400
+I, [2016-06-11T19:01:34.194871 #1398]  INFO -- : Processing by PostsController#index as HTML
+I, [2016-06-11T19:01:34.195863 #1398]  INFO -- : Redirected to http://digitallog.co.uk/log_in
+I, [2016-06-11T19:01:34.195998 #1398]  INFO -- : Filter chain halted as :require_login rendered or redirected
+I, [2016-06-11T19:01:34.196120 #1398]  INFO -- : Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:34.224292 #1401]  INFO -- : Started GET "/log_in" for 86.154.34.237 at 2016-06-11 19:01:34 -0400
+I, [2016-06-11T19:01:34.253775 #1401]  INFO -- : Processing by SessionsController#new as HTML
+I, [2016-06-11T19:01:34.271966 #1401]  INFO -- :   Rendered sessions/new.html.erb (6.3ms)
+I, [2016-06-11T19:01:34.272364 #1401]  INFO -- : Completed 200 OK in 18ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:39.437766 #1398]  INFO -- : Started GET "/log_in" for 86.154.34.237 at 2016-06-11 19:01:39 -0400
+I, [2016-06-11T19:01:39.440379 #1398]  INFO -- : Processing by SessionsController#new as HTML
+I, [2016-06-11T19:01:39.446884 #1398]  INFO -- :   Rendered sessions/new.html.erb (4.4ms)
+I, [2016-06-11T19:01:39.447304 #1398]  INFO -- : Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:40.172869 #1401]  INFO -- : Started GET "/" for 86.154.34.237 at 2016-06-11 19:01:40 -0400
+I, [2016-06-11T19:01:40.175245 #1401]  INFO -- : Processing by PostsController#index as HTML
+I, [2016-06-11T19:01:40.176777 #1401]  INFO -- : Redirected to http://digitallog.co.uk/log_in
+I, [2016-06-11T19:01:40.176940 #1401]  INFO -- : Filter chain halted as :require_login rendered or redirected
+I, [2016-06-11T19:01:40.177136 #1401]  INFO -- : Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:40.199755 #1396]  INFO -- : Started GET "/log_in" for 86.154.34.237 at 2016-06-11 19:01:40 -0400
+I, [2016-06-11T19:01:40.202519 #1396]  INFO -- : Processing by SessionsController#new as HTML
+I, [2016-06-11T19:01:40.208697 #1396]  INFO -- :   Rendered sessions/new.html.erb (4.4ms)
+I, [2016-06-11T19:01:40.208989 #1396]  INFO -- : Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:41.188869 #1401]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:41 -0400
+I, [2016-06-11T19:01:41.191449 #1401]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:41.192920 #1401]  INFO -- : Redirected to http://digitallog.co.uk/log_in
+I, [2016-06-11T19:01:41.193063 #1401]  INFO -- : Filter chain halted as :require_login rendered or redirected
+I, [2016-06-11T19:01:41.193185 #1401]  INFO -- : Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:41.216195 #1398]  INFO -- : Started GET "/log_in" for 86.154.34.237 at 2016-06-11 19:01:41 -0400
+I, [2016-06-11T19:01:41.218706 #1398]  INFO -- : Processing by SessionsController#new as HTML
+I, [2016-06-11T19:01:41.221959 #1398]  INFO -- :   Rendered sessions/new.html.erb (2.3ms)
+I, [2016-06-11T19:01:41.222172 #1398]  INFO -- : Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:41.642024 #1401]  INFO -- : Started GET "/request" for 86.154.34.237 at 2016-06-11 19:01:41 -0400
+I, [2016-06-11T19:01:41.644294 #1401]  INFO -- : Processing by RequestController#index as HTML
+I, [2016-06-11T19:01:41.645123 #1401]  INFO -- : Redirected to http://digitallog.co.uk/log_in
+I, [2016-06-11T19:01:41.645223 #1401]  INFO -- : Filter chain halted as :require_login rendered or redirected
+I, [2016-06-11T19:01:41.645353 #1401]  INFO -- : Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+I, [2016-06-11T19:01:41.668995 #1396]  INFO -- : Started GET "/log_in" for 86.154.34.237 at 2016-06-11 19:01:41 -0400
+I, [2016-06-11T19:01:41.670113 #1396]  INFO -- : Processing by SessionsController#new as HTML
+I, [2016-06-11T19:01:41.673181 #1396]  INFO -- :   Rendered sessions/new.html.erb (2.2ms)
+I, [2016-06-11T19:01:41.673394 #1396]  INFO -- : Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms)
