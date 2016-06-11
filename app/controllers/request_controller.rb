@@ -1,4 +1,7 @@
 class RequestController < ApplicationController
+
+  before_filter :require_login
+  
   def new
   end
   
