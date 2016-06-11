@@ -2,6 +2,8 @@ class UsersController < ApplicationController
     
    # before_action :signed_in_user, only: [:edit, :update, :show]
    # before_action :correct_user,   only: [:edit, :update]
+    before_filter :require_login
+  
     
     def remove_request
       @user = User.find(params[:id])
@@ -117,19 +119,19 @@ class UsersController < ApplicationController
         params.require(:user).permit(:f_name, :s_name, :email, :password, :password_confirmation, :picture, :is_public)
     end
     
-    def signed_in_user
-        redirect_to root_url unless signed_in?
-    end
+#     def signed_in_user
+#         redirect_to root_url unless signed_in?
+#     end
     
-    def correct_user
-        @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user?
-    end
+#     def correct_user
+#         @user = User.find(params[:id])
+#         redirect_to(root_url) unless current_user?
+#     end
     
-    def require_login
-        unless current_user
-            redirect_to log_in_url
-        end
-    end
+#     def require_login
+#         unless current_user
+#             redirect_to log_in_url
+#         end
+#     end
 
 end
