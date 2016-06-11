@@ -2,12 +2,8 @@ class UsersController < ApplicationController
     
    # before_action :signed_in_user, only: [:edit, :update, :show]
    # before_action :correct_user,   only: [:edit, :update]
-<<<<<<< HEAD
-    before_filter :require_login, :except => [:create, :new]
-=======
-    before_filter :require_login
->>>>>>> 9674b15c2614f712ea909ae7aea1889808ae535a
-  
+	before_filter :require_login, :except => [:create, :new]
+
     
     def remove_request
       @user = User.find(params[:id])
