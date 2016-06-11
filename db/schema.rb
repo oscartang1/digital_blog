@@ -27,16 +27,13 @@ ActiveRecord::Schema.define(version: 20160328200133) do
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
 
   create_table "likes", force: true do |t|
-    t.string   "liker_type"
-    t.integer  "liker_id"
-    t.string   "likeable_type"
-    t.integer  "likeable_id"
     t.datetime "created_at"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.integer  "liker_id"
+    t.string   "liker_type"
     t.integer  "likers_count",  default: 0
   end
-
-  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables"
-  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes"
 
   create_table "posts", force: true do |t|
     t.text     "text"
@@ -68,8 +65,8 @@ ActiveRecord::Schema.define(version: 20160328200133) do
     t.string   "f_name"
     t.string   "s_name"
     t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
+    t.binary   "password_hash"
+    t.binary   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_reset_token"
