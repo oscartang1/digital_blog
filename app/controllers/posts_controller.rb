@@ -97,9 +97,5 @@ class PostsController < ApplicationController
         params.require(:post).permit(:title, :text, :photo)
     end
     
-    def require_login
-        unless current_user
-            redirect_to log_in_url
-        end
-    end
+
 end

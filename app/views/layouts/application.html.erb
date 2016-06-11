@@ -2,14 +2,17 @@
 
 <html>
 	<head>
-	  <title>Welcome</title>
+	  <title>Welcome1</title>
 	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
 	</head>
-
+	
 	<body style="background-image: url(http://www.fanpiece.com/images/texture/bg-light-gray.gif?20121102); background-color: #f2f2f2">
-		<% if params[:id] == nil %>
+
+	<% if signed_in? %>
+	
+<!---- NAVIGATION BAR STARTS ---->	
 		<div id="bar">
 			<div id="bar-container">
  				<div id="bar-logo">
@@ -22,7 +25,7 @@
 				</div>
  				<div id="bar-logo">
 					<%= link_to image_tag("me.png", alt: "Logo Image", height: 15), user_path(current_user) %>
-					<div id="bar-text">Me</div>
+					<div id="bar-text"><%= @current_user.f_name %></div>
 				</div>
 				<!-- Start Search section -->
 				<div id="bar-search" >
@@ -34,6 +37,9 @@
 				<!-- End Search section -->
 			</div>
 		</div>
+<!---- NAVIGATION BAR ENDS ---->
+
+<!---- PROFILE SECTION STARTS ---->		
 		<div id="index-container">
 			<div id="user-info">
 			<div id="profile-body">	
@@ -66,19 +72,21 @@
 					
 				</div>
 			</div>
-			
-				<div id="photos-body">
-							<div id="photo-title">Photos</div>
-							<% current_user.posts.order('created_at desc').limit(12).each do |post| %>
-								<% if post.photo_file_name != nil %>
-										<%= link_to image_tag(post.photo.url(:thumb)), post %>
-								<% end %>
-							<% end %>
-						</div>
-				</div>		
-			
-			<%= yield %>
-		</div>
-		<% end %>
+<!---- PROFILE SECTION ENDS ---->
+
+<!---- PHOTO SECTION STRATS ---->
+			<div id="photos-body">
+			<div id="photo-title">Photos</div>
+				<% current_user.posts.order('created_at desc').limit(12).each do |post| %>
+					<% if post.photo_file_name != nil %>
+					<%= link_to image_tag(post.photo.url(:thumb)), post %>
+					<% end %>
+				<% end %>
+			</div>
+			</div>	
+<!---- PHOTO SECTION ENDS ---->
+
+	<%= yield %>
+	<% end %>
 	</body>
 </html>
